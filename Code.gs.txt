@@ -1,0 +1,109 @@
+function doPost(e) {
+  try {
+    const params = e.parameter;
+    const formType = params.formType;
+
+    const ss = SpreadsheetApp.openByUrl('https://docs.google.com/spreadsheets/d/16zFn-2R6kRU_uzTIkn4MjH6NAKyRfuyi1Kk8DKLLSsg/edit');
+    let sheet;
+
+    switch (formType) {
+      case 'contact':
+        sheet = ss.getSheetByName('Contact') || ss.insertSheet('Contact');
+        break;
+      case 'booking':
+        sheet = ss.getSheetByName('Booking') || ss.insertSheet('Booking');
+        break;
+      case 'question':
+        sheet = ss.getSheetByName('Question') || ss.insertSheet('Question');
+        break;
+      case 'admission':
+        sheet = ss.getSheetByName('Admission') || ss.insertSheet('Admission');
+        break;
+      default:
+        return ContentService.createTextOutput(JSON.stringify({ result: 'error', error: 'Invalid form type' }))
+          .setMimeType(ContentService.MimeType.JSON);
+    }
+
+    if (sheet.getLastRow() === 0) {
+      switch (formType) {
+        case 'contact':
+          sheet.appendRow(['Timestamp', 'Name', 'Email', 'Phone', 'Message', 'Preferred Date', 'Preferred Time']);
+          break;
+        case 'booking':
+          sheet.appendRow(['Timestamp', 'Name', 'Email', 'Phone', 'Session Type', 'Preferred Time']);
+          break;
+        case 'question':
+          sheet.appendRow(['Timestamp', 'WhatsApp Number', 'Question']);
+          break;
+        case 'admission':
+          sheet.appendRow([
+            'Timestamp', 'Name', 'Phone', 'Height', 'Weight', 'Age',
+            'Medical History', 'First Time', 'Goal', 'Preferred Timing'
+          ]);
+          break;
+      }
+    }
+
+    switch (formType) {
+      case 'contact':
+        sheet.appendRow([
+          new Date(),
+          params.name,
+          params.email,
+          params.phone,
+          params.message,
+          params.preferredDate,
+          params.preferredTime
+        ]);
+        break;
+      case 'booking':
+        sheet.appendRow([
+          new Date(),
+          params.name,
+          params.email,
+          params.phone,
+          params.sessionType,
+          params.preferredTime
+        ]);
+        break;
+      case 'question':
+        sheet.appendRow([
+          new Date(),
+          params.whatsapp,
+          params.question
+        ]);
+        break;
+      case 'admission':
+        sheet.appendRow([
+          new Date(),
+          params.name,
+          params.phone,
+          params.height,
+          params.weight,
+          params.age,
+          params.medical_history,
+          params.first_time,
+          params.goal,
+          params.preferred_timing
+        ]);
+        break;
+    }
+
+    return ContentService.createTextOutput(JSON.stringify({ result: 'success' }))
+      .setMimeType(ContentService.MimeType.JSON);
+  } catch (error) {
+    return ContentService.createTextOutput(JSON.stringify({ result: 'error', error: error.message }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+}
+
+
+
+
+
+
+Spreadseet Name and cells
+Contact:  Timestamp	Name	Email	Phone	Message	Preferred Date	Preferred Time
+Booking:  Timestamp	Name	Email	Phone	Session Type	Preferred Time
+Question: Timestamp	WhatsApp Number	Question
+Admission: TimeStamp	Name	PhoneNuber	Height	Weight	Age	Medical	First_time	Goal	Preferred Time

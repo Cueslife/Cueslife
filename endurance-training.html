@@ -1,0 +1,298 @@
+<script type="text/javascript">
+  var gk_isXlsx = false;
+  var gk_xlsxFileLookup = {};
+  var gk_fileData = {};
+  function filledCell(cell) {
+    return cell !== "" && cell != null;
+  }
+  function loadFileData(filename) {
+    if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+      try {
+        var workbook = XLSX.read(gk_fileData[filename], { type: "base64" });
+        var firstSheetName = workbook.SheetNames[0];
+        var worksheet = workbook.Sheets[firstSheetName];
+
+        // Convert sheet to JSON to filter blank rows
+        var jsonData = XLSX.utils.sheet_to_json(worksheet, {
+          header: 1,
+          blankrows: false,
+          defval: "",
+        });
+        // Filter out blank rows (rows where all cells are empty, null, or undefined)
+        var filteredData = jsonData.filter((row) => row.some(filledCell));
+
+        // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+        var headerRowIndex = filteredData.findIndex(
+          (row, index) =>
+            row.filter(filledCell).length >=
+            filteredData[index + 1]?.filter(filledCell).length
+        );
+        // Fallback
+        if (headerRowIndex === -1 || headerRowIndex > 25) {
+          headerRowIndex = 0;
+        }
+
+        // Convert filtered JSON back to CSV
+        var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+        csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+        return csv;
+      } catch (e) {
+        console.error(e);
+        return "";
+      }
+    }
+    return gk_fileData[filename] || "";
+  }
+</script>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Endurance & Stamina Training - Cueslife</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <style>
+      /* Fade-In Animation for Content */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .animate-content {
+        animation: fadeIn 0.8s ease-out;
+      }
+
+      /* Modal Styles */
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        z-index: 1000;
+        align-items: center;
+        justify-content: center;
+      }
+      .modal-content {
+        background: white;
+        padding: 2rem;
+        border-radius: 8px;
+        text-align: center;
+        max-width: 400px;
+        width: 90%;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        color: #1e3a8a;
+      }
+      .modal-content h2 {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+      }
+      .modal-content p {
+        color: #4b5563;
+        margin-bottom: 1.5rem;
+      }
+      .modal-content button {
+        background: #0d9488;
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border-radius: 0.375rem;
+        font-weight: 600;
+        transition: background-color 0.3s ease;
+      }
+      .modal-content button:hover {
+        background: #0b8277;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-gradient-to-r from-[#e6f3fa] to-[#b3e0ff] text-gray-900 font-sans"
+  >
+    <!-- Question Modal -->
+    <div id="question-modal" class="modal">
+      <div class="modal-content">
+        <h2>Question Submitted!</h2>
+        <p>
+          Thank you for your question. Our team will respond via WhatsApp soon!
+        </p>
+        <button onclick="closeModal('question-modal')">Close</button>
+      </div>
+    </div>
+
+    <!-- Header Component -->
+    <div id="header"></div>
+
+    <!-- Endurance Training Section -->
+    <section id="endurance-training" class="py-20">
+      <div class="container mx-auto px-4">
+        <h2
+          class="text-4xl sm:text-5xl font-semibold text-center mb-12 text-[#1e3a8a]"
+        >
+          Endurance & Stamina Training
+        </h2>
+        <div class="max-w-3xl mx-auto">
+          <div class="animate-content">
+            <img
+              src="end.png"
+              alt="Endurance Training"
+              class="w-full h-40 object-cover rounded-md mb-8 mx-auto"
+            />
+            <h3 class="text-xl font-semibold mb-4 text-[#1e3a8a]">
+              What is Endurance & Stamina Training?
+            </h3>
+            <p class="text-gray-600 mb-6">
+              Cueslife’s Endurance & Stamina Training program boosts your
+              cardiovascular fitness and stamina, helping you perform better in
+              sports, daily activities, or endurance events like marathons. Our
+              coaches create plans to improve your energy and resilience.
+            </p>
+
+            <h3 class="text-xl font-semibold mb-4 text-[#1e3a8a]">Benefits</h3>
+            <ul class="list-disc list-inside text-gray-600 mb-6">
+              <li>
+                Running, Cycling, or Swimming Plans: Tailored workouts for your
+                preferred cardio activity.
+              </li>
+              <li>
+                Cardio and Interval Training Plans: High-intensity intervals to
+                maximize stamina gains.
+              </li>
+              <li>
+                Injury Prevention and Recovery Tips: Guidance to train safely
+                and recover effectively.
+              </li>
+              <li>
+                Event-Specific Training (e.g., Marathons): Structured plans for
+                races or challenges.
+              </li>
+            </ul>
+
+            <h3 class="text-xl font-semibold mb-4 text-[#1e3a8a]">
+              What to Expect
+            </h3>
+            <p class="text-gray-600 mb-6">
+              Your program begins with an assessment of your current endurance
+              (e.g., running pace, cycling distance). You’ll receive a weekly
+              plan with 3-5 workouts (45-75 minutes each), combining long,
+              steady cardio sessions, interval training, and recovery runs or
+              rides. Plans are delivered via our app or email, with video demos
+              for warm-ups and stretches. Weekly check-ins with your coach track
+              progress and adjust intensity. Expect improved stamina, faster
+              recovery, and confidence for events or daily tasks within 6-8
+              weeks.
+            </p>
+
+            <h3 class="text-xl font-semibold mb-4 text-[#1e3a8a]">
+              Who It’s For
+            </h3>
+            <p class="text-gray-600 mb-6">
+              Ideal for runners, cyclists, swimmers, or anyone wanting to boost
+              energy and endurance. Suitable for beginners building stamina or
+              athletes preparing for events like triathlons.
+            </p>
+
+            <h3 class="text-xl font-semibold mb-4 text-[#1e3a8a]">
+              Frequently Asked Questions
+            </h3>
+            <div class="space-y-4 mb-6">
+              <div>
+                <p class="text-gray-600 font-medium">
+                  Do I need prior cardio experience?
+                </p>
+                <p class="text-gray-600">
+                  No, we start at your level, from walking to advanced training.
+                </p>
+              </div>
+              <div>
+                <p class="text-gray-600 font-medium">
+                  Can I train for a specific race?
+                </p>
+                <p class="text-gray-600">
+                  Yes, we create plans for 5Ks, marathons, or other events with
+                  tailored pacing.
+                </p>
+              </div>
+              <div>
+                <p class="text-gray-600 font-medium">
+                  How do you prevent overtraining?
+                </p>
+                <p class="text-gray-600">
+                  We include rest days, recovery tips, and monitor your fatigue
+                  levels.
+                </p>
+              </div>
+            </div>
+
+            <a
+              href="booking.html"
+              class="inline-block w-full bg-[#0d9488] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#0b8277] transition-colors text-center"
+              >Boost Your Endurance</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer Component -->
+    <div id="footer"></div>
+
+    <!-- Scripts -->
+    <script type="text/javascript">
+      var gk_isXlsx = false;
+      var gk_xlsxFileLookup = {};
+      var gk_fileData = {};
+      function filledCell(cell) {
+        return cell !== "" && cell != null;
+      }
+      function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+          try {
+            var workbook = XLSX.read(gk_fileData[filename], { type: "base64" });
+            var firstSheetName = workbook.SheetNames[0];
+            var worksheet = workbook.Sheets[firstSheetName];
+            var jsonData = XLSX.utils.sheet_to_json(worksheet, {
+              header: 1,
+              blankrows: false,
+              defval: "",
+            });
+            var filteredData = jsonData.filter((row) => row.some(filledCell));
+            var headerRowIndex = filteredData.findIndex(
+              (row, index) =>
+                row.filter(filledCell).length >=
+                filteredData[index + 1]?.filter(filledCell).length
+            );
+            if (headerRowIndex === -1 || headerRowIndex > 25) {
+              headerRowIndex = 0;
+            }
+            var csv = XLSX.utils.aoa_to_sheet(
+              filteredData.slice(headerRowIndex)
+            );
+            csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+            return csv;
+          } catch (e) {
+            console.error(e);
+            return "";
+          }
+        }
+        return gk_fileData[filename] || "";
+      }
+      function closeModal(modalId) {
+        document.getElementById(modalId).style.display = "none";
+      }
+    </script>
+    <script src="header.js"></script>
+    <script src="footer.js"></script>
+  </body>
+</html>

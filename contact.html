@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book Your Session</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      /* Reset and Base Styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background-color: #1f2937; /* bg-gray-900 */
+        color: #ffffff; /* text-white */
+        font-family: sans-serif; /* font-sans */
+        line-height: 1.6;
+      }
+
+      /* Header */
+      .navbar {
+        background-color: #111827; /* bg-gray-900 */
+        padding: 1rem 0;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      .navbar .container {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #ffffff;
+        text-decoration: none;
+      }
+      .nav-links {
+        list-style: none;
+        display: flex;
+        gap: 1.5rem;
+      }
+      .nav-links li a {
+        color: #ffffff;
+        text-decoration: none;
+        font-size: 1rem;
+        transition: color 0.3s;
+      }
+      .nav-links li a:hover {
+        color: #0d9488; /* teal-600 */
+      }
+
+      /* Contact Section */
+      .contact-section {
+        position: relative;
+        padding: 5rem 0; /* py-20 */
+        background: linear-gradient(
+          to right,
+          #1e3a8a,
+          #0d9488
+        ); /* from-blue-900 to-teal-600 */
+        overflow: hidden;
+      }
+      .container {
+        max-width: 1280px; /* mx-auto */
+        margin: 0 auto;
+        padding: 0 1.5rem; /* px-6 */
+        position: relative;
+        z-index: 10;
+      }
+      .contact-section h2 {
+        font-size: 3rem; /* text-5xl */
+        font-weight: 800; /* font-extrabold */
+        text-align: center; /* text-center */
+        margin-bottom: 3rem; /* mb-12 */
+        color: #ffffff; /* text-white */
+        animation: scaleIn 1s ease-out forwards; /* animate-scale-in */
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* drop-shadow-md */
+      }
+
+      /* Floating Particles Animation */
+      .particles {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+      }
+      .particle {
+        position: absolute;
+        background: #facc15; /* yellow-400 */
+        border-radius: 50%;
+        opacity: 0.5;
+        animation: float 15s infinite;
+      }
+      .particle:nth-child(1) {
+        width: 20px;
+        height: 20px;
+        top: 20%;
+        left: 10%;
+        animation-delay: 0s;
+      }
+      .particle:nth-child(2) {
+        width: 15px;
+        height: 15px;
+        top: 50%;
+        left: 30%;
+        animation-delay: 3s;
+      }
+      .particle:nth-child(3) {
+        width: 25px;
+        height: 25px;
+        top: 70%;
+        left: 50%;
+        animation-delay: 6s;
+      }
+      .particle:nth-child(4) {
+        width: 10px;
+        height: 10px;
+        top: 30%;
+        left: 70%;
+        animation-delay: 9s;
+      }
+      .particle:nth-child(5) {
+        width: 18px;
+        height: 18px;
+        top: 80%;
+        left: 90%;
+        animation-delay: 12s;
+      }
+      @keyframes float {
+        0% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-50px);
+        }
+        100% {
+          transform: translateY(0);
+        }
+      }
+
+      /* Scale-In Animation for Title */
+      @keyframes scaleIn {
+        from {
+          opacity: 0;
+          transform: scale(0.8);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      /* Form Card Styling */
+      .form-card {
+        position: relative;
+        max-width: 32rem; /* max-w-lg */
+        margin: 0 auto; /* mx-auto */
+        background: #ffffff; /* bg-white */
+        color: #1e3a8a; /* text-blue-900 */
+        padding: 1.5rem; /* p-6 */
+        border-radius: 0.5rem; /* rounded-lg */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* shadow-md */
+        transition: all 0.3s ease; /* transition-all duration-300 */
+        opacity: 0;
+        animation: cardFadeIn 0.8s ease-out forwards; /* animate-form-fade-in */
+      }
+      .form-card:hover {
+        transform: translateY(-5px); /* hover:translate-y */
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* hover:shadow-xl */
+      }
+      .form-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(250, 204, 21, 0.2); /* yellow-400 opacity-20 */
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        z-index: 0;
+        border-radius: 0.5rem;
+      }
+      .form-card:hover::before {
+        opacity: 1;
+      }
+      .form-card input,
+      .form-card textarea,
+      .form-card button {
+        position: relative;
+        z-index: 1;
+      }
+
+      /* Form Fade-In Animation */
+      @keyframes cardFadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Form Fields */
+      .form-group {
+        margin-bottom: 1rem; /* mb-4 */
+      }
+      .form-group label {
+        display: block;
+        font-size: 0.875rem; /* text-sm */
+        font-weight: 500; /* font-medium */
+        margin-bottom: 0.25rem; /* mb-1 */
+        color: #4b5563; /* text-gray-600 */
+      }
+      .form-input {
+        width: 100%; /* w-full */
+        padding: 0.5rem 1rem; /* px-4 py-2 */
+        background-color: #f3f4f6; /* bg-gray-100 */
+        border: 1px solid #d1d5db; /* border-gray-300 */
+        border-radius: 0.375rem; /* rounded-lg */
+        font-size: 1rem;
+        color: #1f2937; /* text-gray-800 */
+      }
+      .form-input:focus {
+        outline: none;
+        border-color: #0d9488; /* focus:ring-teal-600 */
+        box-shadow: 0 0 0 2px rgba(13, 148, 136, 0.5); /* focus:ring-2 */
+      }
+      textarea.form-input {
+        resize: vertical;
+      }
+
+      /* Submit Button */
+      .submit-button {
+        width: 100%; /* w-full */
+        background-color: #0d9488; /* bg-teal-600 */
+        color: #ffffff; /* text-white */
+        padding: 0.75rem 1.5rem; /* px-6 py-3 */
+        border: none;
+        border-radius: 0.375rem; /* rounded-lg */
+        font-size: 1rem;
+        font-weight: 600; /* font-semibold */
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease; /* transition-transform */
+      }
+      .submit-button:hover {
+        background-color: #0b8277; /* hover:bg-teal-700 */
+        transform: scale(1.05); /* hover:scale-105 */
+      }
+      .spinner {
+        width: 1.25rem; /* w-5 */
+        height: 1.25rem; /* h-5 */
+        margin-left: 0.5rem; /* ml-2 */
+        display: none; /* hidden */
+        animation: spin 1s linear infinite;
+      }
+      .spinner.hidden {
+        display: none;
+      }
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* Modal */
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7); /* bg-black opacity-70 */
+        z-index: 1000;
+        align-items: center;
+        justify-content: center;
+      }
+      .modal-content {
+        background: #ffffff; /* bg-white */
+        padding: 2rem; /* p-8 */
+        border-radius: 0.5rem; /* rounded-lg */
+        text-align: center;
+        max-width: 400px; /* max-w-md */
+        width: 90%;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* shadow-2xl */
+        color: #1e3a8a; /* text-blue-900 */
+      }
+      .modal-content h2 {
+        font-size: 1.5rem; /* text-xl */
+        font-weight: bold; /* font-bold */
+        margin-bottom: 1rem; /* mb-4 */
+      }
+      .modal-content p {
+        color: #4b5563; /* text-gray-600 */
+        margin-bottom: 1.5rem; /* mb-6 */
+      }
+      .modal-content button {
+        background: #0d9488; /* bg-teal-600 */
+        color: #ffffff; /* text-white */
+        padding: 0.75rem 1.5rem; /* px-6 py-3 */
+        border: none;
+        border-radius: 0.375rem; /* rounded-lg */
+        font-weight: 600; /* font-semibold */
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+      .modal-content button:hover {
+        background: #0b8277; /* hover:bg-teal-700 */
+      }
+
+      /* Fireworks Animation (Adapted from booking.html's confetti) */
+      .fireworks-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 1000;
+        display: none;
+      }
+      .firework {
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        background: #ff4444; /* red */
+        opacity: 0.8;
+        animation: firework 2s ease-out forwards;
+      }
+      .firework:nth-child(2n) {
+        background: #44ff44; /* green */
+      }
+      .firework:nth-child(3n) {
+        background: #4444ff; /* blue */
+      }
+      .firework:nth-child(4n) {
+        background: #ffff44; /* yellow */
+      }
+      @keyframes firework {
+        0% {
+          transform: scale(0);
+          opacity: 1;
+        }
+        100% {
+          transform: scale(2);
+          opacity: 0;
+        }
+      }
+
+      /* Footer */
+      .footer {
+        background-color: #111827; /* bg-gray-900 */
+        padding: 2rem 0; /* py-8 */
+        text-align: center;
+        color: #d1d5db; /* text-gray-300 */
+      }
+      .footer .container {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+      .footer-links {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem; /* gap-6 */
+        margin: 1rem 0; /* my-4 */
+      }
+      .footer-links li a {
+        color: #d1d5db; /* text-gray-300 */
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+      .footer-links li a:hover {
+        color: #0d9488; /* hover: teal-600 */
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Contact Success Modal -->
+    <div id="contact-modal" class="modal" style="display: none">
+      <div class="modal-content">
+        <h2>Contact Message Sent!</h2>
+        <p>Thank you for reaching out. We'll get back to you soon!</p>
+        <button onclick="closeModal('contact-modal')">Close</button>
+      </div>
+    </div>
+
+    <!-- Fireworks Container -->
+    <div
+      id="fireworks-container"
+      class="fireworks-container"
+      style="display: none"
+    ></div>
+
+    <!-- Header Component -->
+    <div id="header"></div>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+      <div class="particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+      </div>
+      <div class="container">
+        <h2>Contact Us</h2>
+        <div class="form-card">
+          <form id="contact-form">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                class="form-input"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                class="form-input"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone</label>
+              <input type="tel" id="phone" name="phone" class="form-input" />
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea
+                id="message"
+                name="message"
+                rows="4"
+                class="form-input"
+                required
+              ></textarea>
+            </div>
+            <div class="form-group">
+              <label for="preferredDate">Preferred Date</label>
+              <input
+                type="date"
+                id="preferredDate"
+                name="preferredDate"
+                class="form-input"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="preferredTime">Preferred Time</label>
+              <input
+                type="time"
+                id="preferredTime"
+                name="preferredTime"
+                class="form-input"
+                required
+              />
+            </div>
+            <button type="submit" id="contact-submit" class="submit-button">
+              <span id="contact-button-text">Send Message</span>
+              <svg
+                id="contact-spinner"
+                class="spinner"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 12a8 8 0 0116 0A8 8 0 014 12z"
+                />
+              </svg>
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer Component -->
+    <div id="footer"></div>
+
+    <!-- Scripts for Components -->
+    <script src="header.js"></script>
+    <script src="footer.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

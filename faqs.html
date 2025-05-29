@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FAQs - Cueslife </title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Roboto", sans-serif;
+        background: #f8fafc;
+        color: #4a5568;
+        background-image: linear-gradient(#e2e8f0 1px, transparent 1px),
+          linear-gradient(to right, #e2e8f0 1px, transparent 1px);
+        background-size: 20px 20px;
+      }
+      h2 {
+        color: #1a202c;
+      }
+      .faq-item {
+        margin-bottom: 2rem;
+        padding-top: 1.5rem;
+      }
+      .faq-item h3 {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #1a202c;
+        margin-bottom: 0.75rem;
+      }
+      .faq-item p {
+        font-size: 1rem;
+      }
+      .faq-item a {
+        color: #2b6cb0;
+        text-decoration: underline;
+      }
+      .faq-item a:hover {
+        color: #2c5282;
+      }
+      /* Modal Styles */
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+        align-items: center;
+        justify-content: center;
+      }
+      .modal-content {
+        background: #ffffff;
+        padding: 1.5rem;
+        border-radius: 0.25rem;
+        text-align: center;
+        max-width: 400px;
+        width: 90%;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        color: #1a202c;
+      }
+      .modal-content h2 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+      }
+      .modal-content p {
+        color: #4a5568;
+        margin-bottom: 1.5rem;
+      }
+      .modal-content button {
+        background: #2b6cb0;
+        color: #ffffff;
+        padding: 0.75rem 1.5rem;
+        border-radius: 0.25rem;
+        font-weight: 500;
+        transition: background-color 0.3s ease;
+      }
+      .modal-content button:hover {
+        background: #2c5282;
+      }
+      /* Divider */
+      hr {
+        border: 0;
+        border-top: 1px solid #e2e8f0;
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Question Modal -->
+    <div id="question-modal" class="modal">
+      <div class="modal-content">
+        <h2 id="question-modal-title">Question Submitted!</h2>
+        <p id="question-modal-message">
+          Thank you for your question. Our team will respond via WhatsApp soon!
+        </p>
+        <button onclick="closeModal('question-modal')">Close</button>
+      </div>
+    </div>
+
+    <!-- Header Component -->
+    <div id="header" class="bg-white text-[#1a202c]"></div>
+
+    <!-- FAQs Section -->
+    <section id="faqs" class="py-20">
+      <div class="container mx-auto px-6">
+        <h2 class="text-3xl font-bold text-center mb-12">
+          Frequently Asked Questions
+        </h2>
+        <div class="mb-12">
+          <img
+            src="images/faq-professional.jpg"
+            alt="FAQs"
+            class="w-full h-24 object-cover opacity-80 grayscale mx-auto"
+          />
+        </div>
+        <div class="max-w-3xl mx-auto">
+          <div class="faq-item">
+            <h3>How do I book a session with Cueslife ?</h3>
+            <p>
+              Visit our <a href="booking.html">Booking</a> page, fill out the
+              form with your details, select your preferred session type and
+              time, and submit. You’ll receive a confirmation, and we’ll contact
+              you to finalize the details. Note: You can book one session every
+              24 hours.
+            </p>
+          </div>
+          <hr />
+          <div class="faq-item">
+            <h3>What types of sessions do you offer?</h3>
+            <p>
+              We offer Personal Training, Group Classes, Yoga Sessions, HIIT
+              Workouts, Strength Training, Cardio , Pilates, and Online
+              Coaching. Check our
+              <a href="index.html#services">Services</a> section for details.
+            </p>
+          </div>
+          <hr />
+          <div class="faq-item">
+            <h3>Can I cancel or reschedule my booking?</h3>
+            <p>
+              Yes, contact us via the
+              <a href="index.html#contact">Contact</a> form or WhatsApp (linked
+              on the Booking page) at least 24 hours before your session to
+              cancel or reschedule. Late cancellations may be subject to a fee.
+            </p>
+          </div>
+          <hr />
+          <div class="faq-item">
+            <h3>Why can’t I book another session right away?</h3>
+            <p>
+              To ensure fair access, we limit bookings to one per person every
+              24 hours. You’ll see a message indicating when you can book again.
+              If you need assistance, reach out via our
+              <a href="index.html#contact">Contact</a> form.
+            </p>
+          </div>
+          <hr />
+          <div class="faq-item">
+            <h3>Do you offer nutrition plans?</h3>
+            <p>
+              Yes, our Nutrition Plans are customized to your goals. Book a
+              Personal Training or Online Coaching session to discuss your plan
+              with a trainer.
+            </p>
+          </div>
+          <hr />
+          <div class="faq-item">
+            <h3>What is your refund policy?</h3>
+            <p>
+              Refunds are handled case-by-case. Please review our
+              <a href="/terms">Terms of Service</a> or contact us for details.
+            </p>
+          </div>
+          <hr />
+          <div class="faq-item">
+            <h3>How do I ask a question?</h3>
+            <p>
+              Use the “Have a Question?” form in the footer of any page to
+              submit your question, or use the
+              <a href="index.html#contact">Contact</a> form for detailed
+              inquiries.
+            </p>
+          </div>
+          <hr />
+          <div class="faq-item">
+            <h3>Is my personal information secure?</h3>
+            <p>
+              We prioritize your privacy. See our
+              <a href="/privacy">Privacy Policy</a> for details on how we
+              protect your data.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer Component -->
+    <div id="footer" class="bg-white text-[#1a202c]"></div>
+
+    <!-- Scripts -->
+    <script type="text/javascript">
+      var gk_isXlsx = false;
+      var gk_xlsxFileLookup = {};
+      var gk_fileData = {};
+      function filledCell(cell) {
+        return cell !== "" && cell != null;
+      }
+      function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+          try {
+            var workbook = XLSX.read(gk_fileData[filename], { type: "base64" });
+            var firstSheetName = workbook.SheetNames[0];
+            var worksheet = workbook.Sheets[firstSheetName];
+            var jsonData = XLSX.utils.sheet_to_json(worksheet, {
+              header: 1,
+              blankrows: false,
+              defval: "",
+            });
+            var filteredData = jsonData.filter((row) => row.some(filledCell));
+            var headerRowIndex = filteredData.findIndex(
+              (row, index) =>
+                row.filter(filledCell).length >=
+                filteredData[index + 1]?.filter(filledCell).length
+            );
+            if (headerRowIndex === -1 || headerRowIndex > 25) {
+              headerRowIndex = 0;
+            }
+            var csv = XLSX.utils.aoa_to_sheet(
+              filteredData.slice(headerRowIndex)
+            );
+            csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+            return csv;
+          } catch (e) {
+            console.error(e);
+            return "";
+          }
+        }
+        return gk_fileData[filename] || "";
+      }
+      function closeModal(modalId) {
+        document.getElementById(modalId).style.display = "none";
+      }
+    </script>
+    <script src="header.js"></script>
+    <script src="footer.js"></script>
+  </body>
+</html>

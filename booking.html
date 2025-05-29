@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book Your Session - Cueslife </title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      /* Floating Particles Animation */
+      .particles {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+      }
+      .particle {
+        position: absolute;
+        background: #facc15;
+        border-radius: 50%;
+        opacity: 0.5;
+        animation: float 15s infinite;
+      }
+      .particle:nth-child(1) {
+        width: 20px;
+        height: 20px;
+        top: 20%;
+        left: 10%;
+        animation-delay: 0s;
+      }
+      .particle:nth-child(2) {
+        width: 15px;
+        height: 15px;
+        top: 50%;
+        left: 30%;
+        animation-delay: 3s;
+      }
+      .particle:nth-child(3) {
+        width: 25px;
+        height: 25px;
+        top: 70%;
+        left: 50%;
+        animation-delay: 6s;
+      }
+      .particle:nth-child(4) {
+        width: 10px;
+        height: 10px;
+        top: 30%;
+        left: 70%;
+        animation-delay: 9s;
+      }
+      .particle:nth-child(5) {
+        width: 18px;
+        height: 18px;
+        top: 80%;
+        left: 90%;
+        animation-delay: 12s;
+      }
+      @keyframes float {
+        0% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-50px);
+        }
+        100% {
+          transform: translateY(0);
+        }
+      }
+
+      /* Scale-In Animation for Title */
+      @keyframes scaleIn {
+        from {
+          opacity: 0;
+          transform: scale(0.8);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+      .animate-scale-in {
+        animation: scaleIn 1s ease-out forwards;
+      }
+
+      /* Fade-In Animation for Form */
+      @keyframes cardFadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .animate-form-fade-in {
+        animation: cardFadeIn 0.8s ease-out forwards;
+      }
+
+      /* Form Card Styling */
+      .form-card {
+        position: relative;
+        transition: all 0.3s ease;
+        background: white;
+        color: #1e3a8a;
+      }
+      .form-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      }
+      .form-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(250, 204, 21, 0.2);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        z-index: 0;
+        border-radius: 0.5rem;
+      }
+      .form-card:hover::before {
+        opacity: 1;
+      }
+      .form-card input,
+      .form-card select,
+      .form-card button,
+      .form-card a {
+        position: relative;
+        z-index: 1;
+      }
+
+      /* Modal Styles */
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        z-index: 1000;
+        align-items: center;
+        justify-content: center;
+      }
+      .modal-content {
+        background: white;
+        padding: 2rem;
+        border-radius: 0.5rem;
+        text-align: center;
+        max-width: 400px;
+        width: 90%;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        color: #1e3a8a;
+      }
+      .modal-content h2 {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+      }
+      .modal-content p {
+        color: #4b5563;
+        margin-bottom: 1.5rem;
+      }
+      .modal-content button {
+        background: #0d9488;
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border-radius: 0.375rem;
+        font-weight: 600;
+        transition: background-color 0.3s;
+      }
+      .modal-content button:hover {
+        background: #0b8277;
+      }
+
+      /* Confetti Animation */
+      .confetti-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 1000;
+        display: none;
+      }
+      .confetti {
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        background: #ff4444;
+        opacity: 0.8;
+        animation: fall 3s linear forwards;
+      }
+      .confetti:nth-child(2n) {
+        background: #44ff44;
+      }
+      .confetti:nth-child(3n) {
+        background: #4444ff;
+      }
+      .confetti:nth-child(4n) {
+        background: #ffff44;
+      }
+      @keyframes fall {
+        0% {
+          transform: translateY(-100vh) rotate(0deg);
+        }
+        100% {
+          transform: translateY(100vh) rotate(720deg);
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-gray-900 text-white font-sans">
+    <!-- Animation Containers -->
+    <div id="confetti-container" class="confetti-container"></div>
+
+    <!-- Booking Success Modal -->
+    <div id="booking-success-modal" class="modal">
+      <div class="modal-content">
+        <h2>Booking Confirmed!</h2>
+        <p>
+          Your session with Cueslife  has been successfully booked. We'll
+          contact you soon to confirm the details!
+        </p>
+        <button onclick="closeModal('booking-success-modal')">Close</button>
+      </div>
+    </div>
+
+    <!-- Repeat Booking Modal -->
+    <div id="repeat-booking-modal" class="modal">
+      <div class="modal-content">
+        <h2>Booking Limit Reached</h2>
+        <p id="repeat-booking-message">
+          You've already booked a session recently. Please wait until
+          <span id="repeat-booking-time"></span> to book again.
+        </p>
+        <button onclick="closeModal('repeat-booking-modal')">Close</button>
+      </div>
+    </div>
+
+    <!-- Header Component -->
+    <div id="header"></div>
+
+    <!-- Booking Section -->
+    <section
+      id="booking"
+      class="relative py-20 bg-gradient-to-r from-[#1e3a8a] to-[#0d9488] overflow-hidden"
+    >
+      <div class="absolute inset-0 particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+      </div>
+      <div class="container mx-auto px-6 relative z-10">
+        <h2
+          class="text-5xl sm:text-6xl font-extrabold text-center mb-12 text-white animate-scale-in drop-shadow-md"
+        >
+          Book Your Free Session
+        </h2>
+        <div class="grid grid-cols-1 max-w-lg mx-auto">
+          <div
+            class="form-card p-6 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 opacity-0 animate-form-fade-in"
+          >
+            <h3 class="text-xl font-semibold mb-6 text-center text-[#1e3a8a]">
+              Select Session Details
+            </h3>
+            <form id="booking-form">
+              <div class="mb-4">
+                <label
+                  for="name"
+                  class="block text-sm font-medium mb-1 text-gray-600"
+                  >Name</label
+                >
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  class="w-full px-4 py-2 rounded-lg bg-gray-100 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#0d9488] text-gray-800"
+                  placeholder="Your Name"
+                  required
+                />
+              </div>
+              <div class="mb-4">
+                <label
+                  for="email"
+                  class="block text-sm font-medium mb-1 text-gray-600"
+                  >Email</label
+                >
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  class="w-full px-4 py-2 rounded-lg bg-gray-100 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#0d9488] text-gray-800"
+                  placeholder="Your Email"
+                  required
+                />
+              </div>
+              <div class="mb-4">
+                <label
+                  for="phone"
+                  class="block text-sm font-medium mb-1 text-gray-600"
+                  >Phone Number</label
+                >
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  class="w-full px-4 py-2 rounded-lg bg-gray-100 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#0d9488] text-gray-800"
+                  placeholder="Your Phone Number"
+                  required
+                />
+              </div>
+              <div class="mb-4">
+                <label
+                  for="session-type"
+                  class="block text-sm font-medium mb-1 text-gray-600"
+                  >Session Type</label
+                >
+                <select
+                  id="session-type"
+                  name="sessionType"
+                  class="w-full px-4 py-2 rounded-lg bg-gray-100 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#0d9488] text-gray-800"
+                  required
+                >
+                  <option value="Weight Loss Transformation">
+                    Weight Loss Transformation
+                  </option>
+                  <option value="Diabetes">Diabetes</option>
+                  <option value="Custom Nutrition">Custom Nutrition</option>
+                  <option value="Joint Stress Workout">
+                    Joint Stress Workout
+                  </option>
+                  <option value="Muscle Gain">Muscle Gain</option>
+                  <option value="PCOD (Polycystic Ovarian Disease)">
+                    PCOD (Polycystic Ovarian Disease)
+                  </option>
+                  <option value="Personalized Fitness Coaching">
+                    Personalized Fitness Coaching
+                  </option>
+                  <option value="Desk Worker Fitness">
+                    Desk Worker Fitness & Posture Fixes
+                  </option>
+                  <option value="Endurance Training">Endurance Training</option>
+                </select>
+              </div>
+              <div class="mb-4">
+                <label
+                  for="session-time"
+                  class="block text-sm font-medium mb-1 text-gray-600"
+                  >Preferred Time</label
+                >
+                <input
+                  type="datetime-local"
+                  id="session-time"
+                  name="preferredTime"
+                  class="w-full px-4 py-2 rounded-lg bg-gray-100 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#0d9488] text-gray-800"
+                  required
+                />
+              </div>
+              <button
+                type="submit"
+                class="w-full bg-[#0d9488] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#0b8277] transition-transform transform hover:scale-105 flex items-center justify-center"
+              >
+                <span id="button-text">Submit Booking</span>
+                <svg
+                  class="w-5 h-5 ml-2 hidden animate-spin"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  id="spinner"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4 12a8 8 0 0116 0A8 8 0 014 12z"
+                  />
+                </svg>
+              </button>
+            </form>
+            <div class="mt-6 flex justify-center">
+              <a
+                href="https://wa.me/+918306579113"
+                target="_blank"
+                class="bg-[#25D366] text-white px-4 py-2 rounded-lg flex items-center hover:bg-[#20b858] transition-transform transform hover:scale-105"
+              >
+                <svg
+                  class="w-6 h-6 mr-2"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.966-.272-.099-.47-.148-.669.149-.198.296-.767.966-.941 1.164-.173.199-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.520-.074-.149-.669-1.611-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.521-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.008a9.87 9.87 0 01-5.115-1.38l-.108-.011-3.766.955.965-3.763-.014-.108a9.842 9.842 0 01-1.383-5.11c0-5.439 4.434-9.873 9.876-9.873 5.438 0 9.873 4.434 9.873 9.873a9.876 9.876 0 01-9.876 9.877zm0-1.974c3.018 0 5.784-1.139 7.911-3.013a7.896 7.896 0 002.963-7.911c0-4.36-3.551-7.911-7.911-7.911-4.36 0-7.911 3.551-7.911 7.911 0 1.685.548 3.286 1.554 4.607l-1.614 6.282 6.398-1.614a7.925 7.925 0 004.51 1.39z"
+                  />
+                </svg>
+                Chat on WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer Component -->
+    <div id="footer"></div>
+
+    <!-- Scripts for Components -->
+    <script src="header.js"></script>
+    <script src="footer.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
