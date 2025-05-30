@@ -1,8 +1,11 @@
 document.getElementById("header").innerHTML = `
-  <header class="bg-[#1e3a8a] text-white sticky top-0 z-50 shadow-lg">
+  <header class="bg-white text-gray-800 sticky top-0 z-50 shadow-lg">
     <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
-      <div class="text-3xl font-extrabold tracking-tight">Cueslife</div>
-      <button id="menu-toggle" class="sm:hidden text-white focus:outline-none">
+      <div class="flex items-center space-x-3">
+        <img src="logo.png" alt="Cueslife Logo" class="h-10 w-10 object-contain" />
+        <span class="text-3xl font-extrabold tracking-tight">Cueslife</span>
+      </div>
+      <button id="menu-toggle" class="sm:hidden text-gray-800 focus:outline-none">
         <i class="fas fa-bars text-2xl"></i>
       </button>
       <ul id="nav-menu" class="hidden sm:flex sm:space-x-8 text-sm sm:text-base">
