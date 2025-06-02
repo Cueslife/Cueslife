@@ -52,21 +52,45 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
       </div>
       <div class="space-y-6 max-w-3xl mx-auto">
-        <a href="services.html" class="block bg-gradient-to-r from-indigo-700 to-cyan-500 text-white p-6 sm:p-8 rounded-2xl shadow-2xl group relative overflow-hidden section-item" data-section="services">
-          <div class="absolute inset-0 bg-gradient-to-r from-indigo-800 to-cyan-600 opacity-60 transition-opacity duration-300"></div>
-          <h3 class="text-lg sm:text-xl font-bold mb-2 relative z-10 drop-shadow">Explore Our Services</h3>
-          <p class="text-sm sm:text-base text-white relative z-10 drop-shadow">Custom coaching and dynamic workouts designed around your wellness journey</p>
+        <a href="services.html" class="block bg-gradient-to-r from-indigo-700 to-cyan-500 text-white p-6 sm:p-8 rounded-2xl shadow-2xl group relative overflow-hidden section-item link-effect" data-section="services">
+          <div class="absolute inset-0 bg-gradient-to-r from-indigo-800 to-cyan-600 opacity-60 group-hover:opacity-90 transition-opacity duration-300"></div>
+          <div class="flex items-center justify-between">
+            <div>
+              <h3 class="text-lg sm:text-xl font-bold mb-2 relative z-10 drop-shadow group-hover:underline group-hover:underline-offset-4">Explore Our Services</h3>
+              <p class="text-sm sm:text-base text-white relative z-10 drop-shadow">Custom coaching and dynamic workouts designed around your wellness journey</p>
+            </div>
+            <svg class="w-8 h-8 sm:w-6 sm:h-6 text-white opacity-70 group-hover:opacity-100 group-hover:translate-x-2 transition-all duration-300 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </div>
+          <span class="block mt-4 text-sm sm:text-xs font-semibold text-white opacity-80 group-hover:opacity-100 transition-opacity">Tap to Learn More</span>
         </a>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-          <a href="contact.html" class="bg-white text-gray-900 p-6 sm:p-8 rounded-2xl shadow-2xl group relative overflow-hidden section-item" data-section="contact">
-            <div class="absolute inset-0 bg-gradient-to-r from-gray-100 to-indigo-100 opacity-60 transition-opacity duration-300"></div>
-            <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-2 relative z-10 drop-shadow">Contact Us</h3>
-            <p class="text-sm sm:text-base text-gray-700 relative z-10 drop-shadow">Questions? Let’s connect to fuel your wellness journey.</p>
+          <a href="contact.html" class="bg-white text-gray-900 p-6 sm:p-8 rounded-2xl shadow-2xl group relative overflow-hidden section-item link-effect" data-section="contact">
+            <div class="absolute inset-0 bg-gradient-to-r from-gray-100 to-indigo-100 opacity-60 group-hover:opacity-90 transition-opacity duration-300"></div>
+            <div class="flex items-center justify-between">
+              <div>
+                <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-2 relative z-10 drop-shadow group-hover:underline group-hover:underline-offset-4">Contact Us</h3>
+                <p class="text-sm sm:text-base text-gray-700 relative z-10 drop-shadow">Questions? Let’s connect to fuel your wellness journey.</p>
+              </div>
+              <svg class="w-8 h-8 sm:w-6 sm:h-6 text-gray-700 opacity-70 group-hover:opacity-100 group-hover:translate-x-2 transition-all duration-300 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </div>
+            <span class="block mt-4 text-sm sm:text-xs font-semibold text-gray-700 opacity-80 group-hover:opacity-100 transition-opacity">Tap to Get in Touch</span>
           </a>
-          <a href="booking.html" class="bg-gradient-to-r from-yellow-400 to-pink-500 text-white p-6 sm:p-8 rounded-2xl shadow-2xl group relative overflow-hidden animate-pulse-fast section-item" data-section="booking">
-            <div class="absolute inset-0 bg-gradient-to-r from-yellow-500 to-pink-600 opacity-60 transition-opacity duration-200"></div>
-            <h3 class="text-lg sm:text-xl font-bold mb-2 relative z-10 drop-shadow">Join the Free Experience</h3>
-            <p class="text-sm sm:text-base text-white relative z-10 drop-shadow">Jump in—book your Free session and shine bright!</p>
+          <a href="booking.html" class="bg-gradient-to-r from-yellow-400 to-pink-500 text-white p-6 sm:p-8 rounded-2xl shadow-2xl group relative overflow-hidden animate-pulse-fast section-item link-effect" data-section="booking">
+            <div class="absolute inset-0 bg-gradient-to-r from-yellow-500 to-pink-600 opacity-60 group-hover:opacity-90 transition-opacity duration-200"></div>
+            <div class="flex items-center justify-between">
+              <div>
+                <h3 class="text-lg sm:text-xl font-bold mb-2 relative z-10 drop-shadow group-hover:underline group-hover:underline-offset-4">Join the Free Experience</h3>
+                <p class="text-sm sm:text-base text-white relative z-10 drop-shadow">Jump in—book your Free session and shine bright!</p>
+              </div>
+              <svg class="w-8 h-8 sm:w-6 sm:h-6 text-white opacity-70 group-hover:opacity-100 group-hover:translate-x-2 transition-all duration-300 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </div>
+            <span class="block mt-4 text-sm sm:text-xs font-semibold text-white opacity-80 group-hover:opacity-100 transition-opacity">Tap to Book Now</span>
           </a>
         </div>
       </div>
@@ -81,7 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector('.slideshow').innerHTML = newSlideshowHTML;
   });
 
-  // IntersectionObserver to detect when section is 50% from top of viewport
+  // IntersectionObserver to detect when section is in view
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach(entry => {
@@ -91,16 +115,12 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
           entry.target.classList.add('exit-link');
           entry.target.classList.remove('highlight-link');
-          // Remove exit-link after animation completes
-          setTimeout(() => {
-            entry.target.classList.remove('exit-link');
-          }, 400);
         }
       });
     },
     {
-      rootMargin: '-50% 0px 0px 0px', // Trigger when top of section is 50% from top of viewport
-      threshold: 0 // Trigger as soon as any part is in the adjusted viewport
+      rootMargin: '0px 0px -20% 0px', // Trigger when section is 20% from bottom of viewport
+      threshold: 0.3 // Trigger when 30% of the section is visible
     }
   );
 
@@ -130,19 +150,38 @@ document.addEventListener("DOMContentLoaded", () => {
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     }
 
+    /* Link Effect Styling */
+    .link-effect {
+      position: relative;
+      cursor: pointer;
+      border: 3px solid rgba(255, 255, 255, 0.4);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, opacity 0.3s ease;
+    }
+    .link-effect:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+      border-color: rgba(255, 255, 255, 1);
+      opacity: 1 !important;
+    }
+    .link-effect:hover > div {
+      opacity: 0.9 !important;
+    }
+
     /* Section Styling */
     .section-item {
       cursor: pointer;
-      transform: scale(1.1) translateY(-10px);
-      opacity: 1;
-      transition: opacity 0.4s ease;
+      opacity: 0.5;
+      transform: scale(0.8);
+      transition: opacity 0.4s ease, transform 0.4s ease;
     }
     .section-item.highlight-link {
-      animation: enterSection 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+      animation: growSection 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+      opacity: 1;
       box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3), 0 0 10px rgba(255, 255, 255, 0.3);
     }
     .section-item.exit-link {
-      animation: exitSection 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+      animation: shrinkSection 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+      opacity: 0.5;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     }
     .section-item[data-section="services"].highlight-link > div {
@@ -158,16 +197,16 @@ document.addEventListener("DOMContentLoaded", () => {
       opacity: 0.9;
     }
 
-    /* Animation Keyframes for Enter and Exit */
-    @keyframes enterSection {
-      0% { transform: scale(1.1) translateY(-10px) rotate(2deg); opacity: 1; }
-      50% { transform: scale(1) translateY(10px) rotate(-2deg); opacity: 0.9; }
-      100% { transform: scale(0.95) translateY(20px) rotate(0); opacity: 0.7; }
+    /* Animation Keyframes for Grow and Shrink */
+    @keyframes growSection {
+      0% { transform: scale(0.8); opacity: 0.5; }
+      50% { transform: scale(1.1); opacity: 0.8; }
+      100% { transform: scale(1); opacity: 1; }
     }
-    @keyframes exitSection {
-      0% { transform: scale(0.95) translateY(20px) rotate(0); opacity: 0.7; }
-      50% { transform: scale(1) translateY(0) rotate(2deg); opacity: 0.9; }
-      100% { transform: scale(1.1) translateY(-10px) rotate(0); opacity: 1; }
+    @keyframes shrinkSection {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.1); opacity: 0.8; }
+      100% { transform: scale(0.8); opacity: 0.5; }
     }
 
     /* Slideshow Animation */
@@ -296,46 +335,74 @@ document.addEventListener("DOMContentLoaded", () => {
         line-height: 2rem;
       }
       p {
-        font-size: 0.75rem;
-        line-height: 1.1rem;
+        font-size: 0.875rem;
+        line-height: 1.25rem;
       }
       .slide {
         background-size: cover;
         background-position: center;
       }
       .grid {
-        gap: 0.75rem;
+        gap: 1rem;
       }
       a > div > p {
-        font-size: 0.6875rem;
+        font-size: 0.75rem;
       }
       .transparent-box {
-        padding: 1rem;
+        padding: 1.5rem;
       }
       .section-item {
-        transform: scale(1.05) translateY(-5px);
-        opacity: 1;
+        transform: scale(0.8);
+        opacity: 0.5;
+        padding: 1.5rem;
+        border-radius: 1rem;
+        border-width: 4px;
       }
       .section-item.highlight-link {
-        animation: enterSectionMobile 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25), 0 0 8px rgba(255, 255, 255, 0.2);
+        animation: growSectionMobile 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3), 0 0 8px rgba(255, 255, 255, 0.3);
       }
       .section-item.exit-link {
-        animation: exitSectionMobile 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        animation: shrinkSectionMobile 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+      .section-item:hover {
+        transform: scale(1.05);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        border-color: rgba(255, 255, 255, 1);
+        opacity: 1;
+      }
+      .section-item > div {
+        opacity: 0.8;
+      }
+      .section-item:hover > div {
+        opacity: 1 !important;
+      }
+      .section-item svg {
+        width: 2.5rem;
+        height: 2.5rem;
+        stroke-width: 3;
+      }
+      .section-item span {
+        font-size: 1rem;
+        margin-top: 1rem;
+        padding: 0.5rem 1rem;
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: 0.5rem;
+        display: inline-block;
       }
     }
 
     /* Mobile Animation Keyframes */
-    @keyframes enterSectionMobile {
-      0% { transform: scale(1.05) translateY(-5px) rotate(2deg); opacity: 1; }
-      50% { transform: scale(1) translateY(10px) rotate(-2deg); opacity: 0.9; }
-      100% { transform: scale(0.95) translateY(20px) rotate(0); opacity: 0.7; }
+    @keyframes growSectionMobile {
+      0% { transform: scale(0.8); opacity: 0.5; }
+      50% { transform: scale(1.15); opacity: 0.8; }
+      100% { transform: scale(1.05); opacity: 1; }
     }
-    @keyframes exitSectionMobile {
-      0% { transform: scale(0.95) translateY(20px) rotate(0); opacity: 0.7; }
-      50% { transform: scale(1) translateY(0) rotate(2deg); opacity: 0.9; }
-      100% { transform: scale(1.05) translateY(-5px) rotate(0); opacity: 1; }
+    @keyframes shrinkSectionMobile {
+      0% { transform: scale(1.05); opacity: 1; }
+      50% { transform: scale(1.15); opacity: 0.8; }
+      100% { transform: scale(0.8); opacity: 0.5; }
     }
   `;
   document.head.appendChild(style);
